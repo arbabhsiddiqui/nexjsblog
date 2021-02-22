@@ -1,6 +1,7 @@
 import imageUrlBuilder from "@sanity/image-url";
 import { useEffect, useState } from "react";
 import BlockContent from "@sanity/block-content-to-react";
+import Head from "next/head";
 
 export const Post = ({ title, body, image }) => {
   console.log(title, body, image);
@@ -18,6 +19,13 @@ export const Post = ({ title, body, image }) => {
 
   return (
     <>
+      <Head>
+        <title>{title}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={title} />
+        <meta property="og:image" content={imageUrl} />
+      </Head>
       <h1>{title}</h1>
 
       {imageUrl && <img src={imageUrl} alt={image} width={500} height={500} />}
